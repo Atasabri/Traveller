@@ -1,0 +1,131 @@
+﻿@model Traveller.Models.Offer
+
+@{
+    ViewBag.Title = "تفاصيل العرض ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تفاصيل العرض </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Offers/Edit/@Model.ID" class="btn btn-success"> تعديل  العرض</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>السعر </h2>
+                    </div>
+                    <h4>@Model.Price</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        @if (DateTime.Now.Date > Model.FromDate.Date && DateTime.Now.Date < Model.ToDate.Date)
+                        {
+                            <h2>متاح </h2>
+                        }
+                        else
+                        {
+                            <h2>غير متاح</h2>
+                        }
+                    </div>
+                    
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>الايام</h2>
+                    </div>
+                    <h4>@Model.Days_Number</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>عدد الاشخاص</h2>
+                    </div>
+                    <h4>@Model.Visitors_Number</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> تاريخ بدأ العرض</h2>
+                    </div>
+                    <h4>@Model.FromDate.Date.ToString("MM-dd-yyyy")</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> تاريخ انتهاء العرض</h2>
+                    </div>
+                    <h4>@Model.ToDate.Date.ToString("MM-dd-yyyy")</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> الدولة</h2>
+                    </div>
+                    <h4>@Model.Country.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>الصورة</h2>
+                    </div>
+                    <div class="card-body">
+                        <img src="~/Uploads/Offers/@(Model.ID).jpg" width="200" height="200" style="border-radius:50%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cardo">
+                    <div class="card-title">
+                        <h2>التفاصيل</h2>
+                    </div>
+                    <p>
+                      @Model.Description
+                    </p>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+
+<!-- End Page wrapper  -->

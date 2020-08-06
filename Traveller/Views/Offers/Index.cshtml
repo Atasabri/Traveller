@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Traveller.Models.Offer>
+
+@{
+    ViewBag.Title = "العروض";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">العروض </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/offers/Create" class="btn btn-success">اضافة عرض</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>السعر</th>
+                                        <th>عدد الايام</th>
+                                        <th>
+                                            عدد الاشخاص
+                                        </th> 
+                                        <th>الدولة</th>
+                                        <th></th>                                    
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>السعر</th>
+                                        <th>عدد الايام</th>
+                                        <th>
+                                            عدد الاشخاص
+                                        </th>
+                                        <th>الدولة</th>
+                                        <th></th> 
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Price</td>
+                                            <td>@item.Days_Number</td>
+                                            <td>@item.Visitors_Number</td>
+                                            <td>@item.Country.Name</td>
+                                            <td>
+                                                <div class="dropdown show">
+                                                    <a data-toggle="dropdown" aria-expanded="true">
+                                                        <i class="ti-settings">
+                                                        </i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <a href="~/Offers/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                        <a href="~/Offers/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                        <li>
+                                                            <form action="~/Offers/Delete/@(item.ID)" method="post">
+                                                                @Html.AntiForgeryToken()
+                                                                <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Car Offer ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+
+<!-- End Page wrapper  -->

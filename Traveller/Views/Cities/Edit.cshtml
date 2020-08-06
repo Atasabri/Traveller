@@ -1,0 +1,164 @@
+﻿@model Traveller.Models.City
+@using Traveller.Models
+@{
+    ViewBag.Title = "تعديل مدينة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تعديل مدينة  </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Cities/Edit" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("ID",Model.ID)
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الاسم</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">دائرة عرض</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Log, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Log, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">خط طول</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Lat, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Lat, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>                           
+                             <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">اسم الدولة</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Country_ID", new SelectList(new DB().Countries, "ID", "Name",Model.Country_ID), "-Select Country -", new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">تقرير</label>
+                                <div class="col-md-8">
+                                    <input type="file" multiple name="Reports" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صور</label>
+                                <div class="col-md-8">
+                                    <input type="file" multiple name="Photos" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صورة الخلفية</label>
+                                <div class="col-md-8">
+                                    <input type="file" multiple name="PhotoBack" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">حفظ</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+</div>
+<!-- End Page wrapper  -->
+<div class="row page-titles">
+    <div class="col-md-12 align-self-center">
+        <h3 class="text-primary text-center"> <a href="~/Cities/Reports/@(Model.ID)">التقارير</a> </h3>
+    </div>
+    </div>
+    <!-- Page wrapper  -->
+    <div class="page-wrapper">
+        <!-- Bread crumb -->
+        <div class="row page-titles">
+            <div class="col-md-12 align-self-center">
+                <h3 class="text-primary text-center"> الصور </h3>
+            </div>
+        </div>
+        <!-- End Bread crumb -->
+        <!-- Container fluid  -->
+        <div class="container-fluid" style="text-align:right;">
+            <!-- Start Page Content -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <table id="" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th> الصورة  </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th> الصورة  </th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model.City_Photos)
+                                    {
+                                        <tr>
+                                            <td><img src="~/Uploads/Cities/@(item.ID).jpg" width="200" height="200" alt="" /></td>
+                                            <td>
+                                                <form action="~/Cities/DeletePhoto/@(item.ID)" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Photo ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Container fluid  -->
+    </div>
+    <!-- End Page wrapper  -->
+
+

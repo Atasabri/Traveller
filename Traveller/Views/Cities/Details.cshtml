@@ -1,0 +1,468 @@
+﻿@model Traveller.Models.City
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .star-ratings-sprite {
+        background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+        font-size: 0;
+        height: 21px;
+        line-height: 0;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 110px;
+        margin: 0 auto;
+    }
+
+
+    .star-ratings-sprite-rating {
+        background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+        background-position: 0 100%;
+        float: left;
+        height: 21px;
+        display: block;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+</style>
+
+
+    <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تفاصيل المدينة </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Cities/Edit/@Model.ID" class="btn btn-success"> تعديل  المدينة</a>
+    </div>
+
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم المدينه</h2>
+                    </div>
+                    <h4>@Model.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> صورة الخلفية</h2>
+                    </div>
+                    <h4>
+                        <img src="~/Uploads/Cities_Background/@(Model.ID).jpg" alt="" width="200" height="200" style="border-radius:50%" />
+                    </h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> التقييم</h2>
+                    </div>
+                    <div class="desc">
+                        <div class="cont">
+                            @{
+                                double Rating = Model.City_Rates.Count != 0 ? Model.City_Rates.Select(x => x.Rate).Average() : 0;
+                                double value = Rating * 20;
+                            }
+                            <div class="star-ratings-sprite"><span style="width:@(value)%" class="star-ratings-sprite-rating"></span></div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>دائرة العرض</h2>
+                    </div>
+                    <h4>@Model.Log</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>خط الطول</h2>
+                    </div>
+                    <h4>@Model.Lat</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم الدولة</h2>
+                    </div>
+                    <h4>@Model.Country.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cardo">
+                    <div class="card-title">
+                        <h4>الصور</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+
+                                    <tr>
+                                        @foreach (var item in Model.City_Photos)
+                                        {
+
+                                            <th>
+                                                <img src="~/Uploads/Cities/@(item.ID).jpg" height="200" width="250" />
+                                            </th>
+
+                                        }                          
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cardo">
+                    <div class="card-title">
+                        <h4>التقارير</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+
+                                    <tr>
+                                        @foreach (var item in Model.City_Reports)
+                                        {
+
+                                            <th>
+                                                <img src="~/Uploads/City_Reports/@(item.ID).jpg" height="200" width="250" />
+                                            </th>
+
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">الاماكن السياحية </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Places/Create" class="btn btn-success">اضافة مكان</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>اسم المكان  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>اسم المكان  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Places)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Places/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Places/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Places/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Place ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center"> الفنادق </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Hotels/Create" class="btn btn-success">اضف فندق</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>اسم الفندق  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>اسم الفندق  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Hotels)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Hotels/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Hotels/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Hotels/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Hotel ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center"> شركات الطيران </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Flies/Create" class="btn btn-success">اضافة طائرة</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>اسم الشركة  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>اسم الشركة  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Flys)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Flys/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Flys/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Flys/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Fly Company ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">  حجز السيارات </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Cars/Create" class="btn btn-success">اضافة سيارة</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th> الاسم  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th> الاسم  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Cars)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Cars/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Cars/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Cars/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Fly Car ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->

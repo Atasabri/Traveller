@@ -1,0 +1,101 @@
+﻿@model Traveller.Models.Fly
+@using Traveller.Models
+@{
+    ViewBag.Title = "اضافة طائرة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">اضافة طائرة </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Flies/Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الاسم</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الرابط</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">اسم الدولة</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Country_id", new SelectList(new DB().Countries, "ID", "Name"), "-Select Country -", new { @id = "Country_id", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">اسم المدينه</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("City_ID", new SelectList(new DB().Cities, "ID", "Name"), "-Select City -", new { @id = "City_ID", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صورة</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Photo" required />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">اضافة</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+</div>
+<!-- End Page wrapper  -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+<script>
+    $(document).ready(function(){
+          $("#Country_id").change(function(){
+              $.get("/Cars/GetCities", { CountryID: $("#Country_id").val() }, function (data) {
+                  $("#City_ID").empty();
+                  $.each(data, function (index, row) {
+                      $("#City_ID").append("<option value='" + row.ID + "'>" + row.Name + "</option>");
+                  });
+              });
+           });
+        });
+</script>

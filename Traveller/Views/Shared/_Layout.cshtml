@@ -1,0 +1,313 @@
+﻿@using Traveller.Models
+@{ 
+    int ID = int.Parse(User.Identity.Name);
+    Admin admin = new DB().Admins.Find(ID);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon.png">
+
+    <link href="~/Content/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/lib/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/helper.css" rel="stylesheet" />
+    <style>
+        #not {
+            text-align: right;
+        }
+    </style>
+
+</head>
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index1.html">
+                        <!-- Logo icon -->
+                        <b><img src="~/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span><img src="~/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0" dir="rtl">
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div id="not" class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">المهام</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            @if (admin.IsManager)
+                                            {
+                                                foreach (var item in new DB().Tasks.OrderByDescending(x => x.ID).Take(4))
+                                                {
+                                                    <a href="~/Admins/Tasks">
+                                                        <div class="mail-contnet">
+                                                            <h5>@item.Task1</h5> <span class="mail-desc">@item.Admin1.UserName</span> <span class="time"></span>
+                                                        </div>
+                                                    </a>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in new DB().Tasks.OrderByDescending(x => x.ID).Take(4))
+                                                {
+                                                    <a href="~/Admins/Tasks">
+                                                        <div class="mail-contnet">
+                                                            <h5>@item.Task1</h5> <span class="mail-desc">@item.Admin.UserName</span> <span class="time"></span>
+                                                        </div>
+                                                    </a>
+                                                }
+                                            }
+
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="~/Admins/Tasks"> <h4>عرض جميع المهام <i class="fa fa-angle-left"></i></h4>  </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/Uploads/Admins/@(admin.ID).jpg" height="30" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="~/Admins/Details/@admin.ID"><i class="ti-user"></i>  الصفحة الشخصية</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="~/Admins/Tasks"><i class="ti-list"></i>  المهام</a></li>
+                                    <li><a href="~/Auth/LogOut"><i class="fa fa-power-off"></i>  تسجيل الخروج</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        @RenderBody()
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="left-sidebar">
+                <!-- Sidebar scroll-->
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-devider"></li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="fa fa-tachometer"></i>
+                                    <span class="hide-menu">
+                                        لوحة التحكم
+
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/Admins/Dashboard">التحليلات </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="ti-id-badge"></i>
+                                    <span class="hide-menu">
+                                        المسؤولون
+                                        <span class="label label-rouded label-primary pull-right">
+                                            @{
+                                                int Admins = new DB().Admins.Count();
+                                            }
+                                            @Admins
+                                        </span>
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/Admins/Index">المسؤولين</a></li>
+                                    <li><a href="~/Admins/Tasks">المهام</a></li>
+                                    <li><a href="~/Admins/Codes">الاكواد</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="fa fa-map-marker"></i>
+                                    <span class="hide-menu">
+                                        الدول
+                                        <span class="label label-rouded label-red pull-right">
+                                           @{
+                                               int countries = new DB().Countries.Count();
+                                        }
+                                        @countries 
+                                        </span>
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/Countries/Index">الدول</a></li>
+                                    <li><a href="~/Country_Photos/Index">صور خدمات السفر</a></li>
+                                    <li><a href="~/Country_Videos/Index">فيديوهات خدمات السفر</a></li>
+                                    <li><a href="~/Calls_Companies/Index">شركات الاتصال</a></li>
+                                    <li><a href="~/Cars_Companies/Index">شركات السيارات</a></li>
+                                    <li><a href="~/Offers/Index">العروض</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="fa fa-location-arrow"></i>
+                                    <span class="hide-menu">
+                                        المدن
+                                        <span class="label label-rouded label-warning pull-right">
+                                            @{
+                                                int Cities = new DB().Cities.Count();
+                                            }
+                                            @Cities
+                                        </span>
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/Cities/Index">المدن</a></li>
+                                    <li><a href="~/Places/Index">الاماكن</a></li>
+                                    <li><a href="~/Hotels/Index">الفنادق</a></li>
+                                    <li><a href="~/Flies/Index">الطيران</a></li>
+                                    <li><a href="~/Cars/Index">السيارات</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="ti-user"></i>
+                                    <span class="hide-menu">
+                                        المستخدمون
+                                        <span class="label label-rouded label-danger pull-right">
+                                            @{ 
+                                                int Users = new DB().Users.Count();
+                                            }
+                                            @Users
+                                        </span>
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/Users/Index">الاشخاص</a></li>
+                                </ul>
+                                <ul aria-expanded="false" class="collapse"></ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="ti-list"></i>
+                                    <span class="hide-menu">
+                                        الموقع
+                                      
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/WebSite/Contacts"> المتصلين</a></li>
+                                    <li><a href="~/WebSite/Subscribers"> المتابعين</a></li>
+                                </ul>
+                                <ul aria-expanded="false" class="collapse"></ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow  " href="#" aria-expanded="false">
+                                    <i class="ti-list"></i>
+                                    <span class="hide-menu">
+                                        التطبيق
+
+                                    </span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="~/AboutUsPhotoes/Index"> صور التطبيق</a></li>
+                                    <li><a href="~/AboutUsVideos/Index"> فيديوهات التطبيق</a></li>
+                                </ul>
+                                <ul aria-expanded="false" class="collapse"></ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="~/Scripts/lib/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/Scripts/lib/popper.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="~/Scripts/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="~/Scripts/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="~/Scripts/lib/sticky-kit.min.js"></script>
+
+
+    <script src="~/Scripts/lib/datamap-init.js"></script>
+    <script src="~/Scripts/lib/d3.min.js"></script>
+    <script src="~/Scripts/lib/datamaps.world.min.js"></script>
+    <script src="~/Scripts/lib/topojson.js"></script>
+
+
+    <script src="~/Scripts/lib/jquery.simpleWeather.min.js"></script>
+    <script src="~/Scripts/lib/weather-init.js"></script>
+    <script src="~/Scripts/lib/owl.carousel-init.js"></script>
+    <script src="~/Scripts/lib/owl.carousel.min.js"></script>
+
+    <script src="~/Scripts/lib/chartist-init.js"></script>
+    <script src="~/Scripts/lib/chartist-plugin-tooltip.min.js"></script>
+    <script src="~/Scripts/lib/chartist.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="~/Scripts/js/custom.min.js"></script>
+
+
+
+ 
+    <script src="~/Scripts/lib/datatables/datatables.min.js"></script>
+    <script src="~/Scripts/lib/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/lib/datatables/buttons.flash.min.js"></script>
+    <script src="~/Scripts/lib/datatables/jszip.min.js"></script>
+    <script src="~/Scripts/lib/datatables/pdfmake.min.js"></script>
+    <script src="~/Scripts/lib/datatables/vfs_fonts.js"></script>
+    <script src="~/Scripts/lib/datatables/buttons.html5.min.js"></script>
+    <script src="~/Scripts/lib/datatables/buttons.print.min.js"></script>
+    <script src="~/Scripts/lib/datatables/datatables-init.js"></script>
+</body>
+</html>

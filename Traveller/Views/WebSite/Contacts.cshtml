@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Traveller.Models.Contact>
+
+@{
+    ViewBag.Title = "اتصالات الموقع";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+  <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">اتصالات الموقع</h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">بيانات الاتصال</h4>
+
+                        <form action="~/WebSite/SendMail" method="post" enctype="multipart/form-data">
+                            <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>الاسم  </th>
+                                        <th>البريد الالكتروني  </th>
+                                        <th>الرسالة</th>
+                                        <th> <input class="check-mark" type="checkbox" onclick="toggle(this)" /> </th>
+
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>الاسم</th>
+                                        <th>البريد الالكتروني</th>
+                                        <th>الرسالة</th>
+                                        <th><input class="check-mark" type="checkbox" onclick="toggle(this)" /></th>
+
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@item.Name </td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Message</td>
+                                    <td>
+                                        <input type="checkbox" value="@item.Email" name="fooa" />
+                                    </td>
+                                </tr>
+
+                                }
+                                </tbody>
+                            </table>
+                            <div class="input-group">
+                                <span class="input-group col-md-4" id="basic-addon3">Subject</span>
+                                <input type="text" name="Subject" required class="form-control col-md-4" id="basic-url" aria-describedby="basic-addon3">
+                            </div> <br />
+                            <div class="input-group">
+                                <span class="input-group col-md-4" id="basic-addon3">Upload file</span>
+                                <input type="file" name="file" required class="col-md-8" id="basic-url" aria-describedby="basic-addon3" multiple>
+                            </div> <br />
+
+                            <button type="submit" class="btn btn-success">Send mail</button>
+                        </form>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End PAge Content -->
+</div>
+<!-- End Container fluid  -->
+    </div>
+
+<!-- End Page wrapper  -->
+    <script>
+        function toggle(source) {
+            var all = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < all.length; i++) {
+                if (all[i] != source)
+                    all[i].checked = source.checked;
+            }
+        }
+</script>

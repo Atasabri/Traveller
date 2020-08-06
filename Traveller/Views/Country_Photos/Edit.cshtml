@@ -1,0 +1,68 @@
+﻿@model Traveller.Models.Country_Photos
+@using Traveller.Models
+@{
+    ViewBag.Title = "تعديل الصورة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تعديل  الصورة في خدمات الصفر</h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Country_Photos/Edit" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("ID", Model.ID)
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">التفاصيل</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الدولة</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Country_ID", new SelectList(new DB().Countries, "ID", "Name", Model.Country_ID), "-Select Country -", new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صورة</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Photo" />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">حفظ</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+</div>

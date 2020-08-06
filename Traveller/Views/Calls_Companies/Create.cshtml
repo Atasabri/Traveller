@@ -1,0 +1,96 @@
+﻿@model Traveller.Models.Calls_Companies
+@using Traveller.Models
+@{
+    ViewBag.Title = "اضافة شركة اتصال";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">اضافة شركة اتصال </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Calls_Companies/Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الاسم</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الكود</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">رقم المساعدة</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Help_Number, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Help_Number, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الرابط</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">اسم الدولة</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Country_ID",new SelectList(new DB().Countries,"ID","Name"),"-Select Country -",new {@class= "form-control",@required= "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الصورة</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Photo" required />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">اضافة</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+    <!-- footer -->
+
+</div>
+<!-- End Page wrapper  -->

@@ -1,0 +1,1192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravellerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AboutUsPhoto">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AboutUsVideo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsManager" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Tasks" Relationship="Self.FK__Tasks__FromManag__0FEC5ADD" FromRole="Admins" ToRole="Tasks" />
+    <NavigationProperty Name="Tasks1" Relationship="Self.FK__Tasks__ToAdmin__10E07F16" FromRole="Admins" ToRole="Tasks" />
+  </EntityType>
+  <EntityType Name="Calls_Companies">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Help_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Calls_Com__Count__6991A7CB" FromRole="Calls_Companies" ToRole="Countries" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__Cars__City_ID__0A688BB1" FromRole="Cars" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="Cars_Companies">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Cars_Comp__Count__0D64F3ED" FromRole="Cars_Companies" ToRole="Countries" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Log" Type="Double" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK__Cars__City_ID__0A688BB1" FromRole="Cities" ToRole="Cars" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Cities__Country___0E591826" FromRole="Cities" ToRole="Countries" />
+    <NavigationProperty Name="City_Photos" Relationship="Self.FK__City_Phot__City___7226EDCC" FromRole="Cities" ToRole="City_Photos" />
+    <NavigationProperty Name="City_Rates" Relationship="Self.FK__City_Rate__City___6E565CE8" FromRole="Cities" ToRole="City_Rates" />
+    <NavigationProperty Name="City_Reports" Relationship="Self.FK__City_Repo__City___7132C993" FromRole="Cities" ToRole="City_Reports" />
+    <NavigationProperty Name="Flys" Relationship="Self.FK__Flys__City_ID__09746778" FromRole="Cities" ToRole="Flys" />
+    <NavigationProperty Name="Hotels" Relationship="Self.FK__Hotels__City_ID__0880433F" FromRole="Cities" ToRole="Hotels" />
+    <NavigationProperty Name="Places" Relationship="Self.FK__Places__City_ID__731B1205" FromRole="Cities" ToRole="Places" />
+    <NavigationProperty Name="User_City" Relationship="Self.FK__User_City__City___703EA55A" FromRole="Cities" ToRole="User_City" />
+  </EntityType>
+  <EntityType Name="City_Photos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__City_Phot__City___7226EDCC" FromRole="City_Photos" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="City_Rates">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rate" Type="Double" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__City_Rate__City___6E565CE8" FromRole="City_Rates" ToRole="Cities" />
+    <NavigationProperty Name="User" Relationship="Self.FK__City_Rate__User___2E70E1FD" FromRole="City_Rates" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="City_Reports">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__City_Repo__City___7132C993" FromRole="City_Reports" ToRole="Cities" />
+    <NavigationProperty Name="Report_Comments" Relationship="Self.FK__Report_Co__Repor__6ABAD62E" FromRole="City_Reports" ToRole="Report_Comments" />
+  </EntityType>
+  <EntityType Name="Code">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrencyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Log" Type="Double" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Police_Number" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ambulance_Number" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fire_Number" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="History_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Roles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Roles_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Calls_Companies" Relationship="Self.FK__Calls_Com__Count__6991A7CB" FromRole="Countries" ToRole="Calls_Companies" />
+    <NavigationProperty Name="Cars_Companies" Relationship="Self.FK__Cars_Comp__Count__0D64F3ED" FromRole="Countries" ToRole="Cars_Companies" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__Country___0E591826" FromRole="Countries" ToRole="Cities" />
+    <NavigationProperty Name="Country_Photos" Relationship="Self.FK__Country_P__Count__7DEDA633" FromRole="Countries" ToRole="Country_Photos" />
+    <NavigationProperty Name="User_Photos" Relationship="Self.FK__Country_Phot__User___34C8D9D1" FromRole="Countries" ToRole="User_Photos" />
+    <NavigationProperty Name="Country_Videos" Relationship="Self.FK__Country_V__Count__03A67F89" FromRole="Countries" ToRole="Country_Videos" />
+    <NavigationProperty Name="User_Videos" Relationship="Self.FK__Country_Vide__User___37A5467C" FromRole="Countries" ToRole="User_Videos" />
+    <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__Count__58BC2184" FromRole="Countries" ToRole="Favorites" />
+    <NavigationProperty Name="Offers" Relationship="Self.FK__Offers__Country___0F4D3C5F" FromRole="Countries" ToRole="Offers" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__Country_I__335592AB" FromRole="Countries" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Country_Photo_Comments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_Photo_ID" Type="Int32" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country_Photos" Relationship="Self.FK__Country_P__Count__00CA12DE" FromRole="Country_Photo_Comments" ToRole="Country_Photos" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Country_P__User___32616E72" FromRole="Country_Photo_Comments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Country_Photos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="Description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Country_P__Count__7DEDA633" FromRole="Country_Photos" ToRole="Countries" />
+    <NavigationProperty Name="Country_Photo_Comments" Relationship="Self.FK__Country_P__Count__00CA12DE" FromRole="Country_Photos" ToRole="Country_Photo_Comments" />
+  </EntityType>
+  <EntityType Name="Country_Video_Comments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_Video_ID" Type="Int32" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country_Videos" Relationship="Self.FK__Country_V__Count__0682EC34" FromRole="Country_Video_Comments" ToRole="Country_Videos" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Country_V__User___27E3DFFF" FromRole="Country_Video_Comments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Country_Videos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="Description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Country_V__Count__03A67F89" FromRole="Country_Videos" ToRole="Countries" />
+    <NavigationProperty Name="Country_Video_Comments" Relationship="Self.FK__Country_V__Count__0682EC34" FromRole="Country_Videos" ToRole="Country_Video_Comments" />
+  </EntityType>
+  <EntityType Name="Favorite">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Favorites__Count__58BC2184" FromRole="Favorites" ToRole="Countries" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Favorites__User___57C7FD4B" FromRole="Favorites" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Fly">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__Flys__City_ID__09746778" FromRole="Flys" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__Hotels__City_ID__0880433F" FromRole="Hotels" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="Offer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Days_Number" Type="Int32" Nullable="false" />
+    <Property Name="Visitors_Number" Type="Int32" Nullable="false" />
+    <Property Name="Currency" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Offers__Country___0F4D3C5F" FromRole="Offers" ToRole="Countries" />
+  </EntityType>
+  <EntityType Name="Place_Comments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Place_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK__Place_Com__Place__78D3EB5B" FromRole="Place_Comments" ToRole="Places" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Place_Com__User___6F7F8B4B" FromRole="Place_Comments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Place_Likes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Place_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK__Place_Lik__Place__77DFC722" FromRole="Place_Likes" ToRole="Places" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Place_Lik__User___30592A6F" FromRole="Place_Likes" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Place">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description_en" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Log" Type="Double" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <Property Name="NameInCountry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="Self.FK__Places__City_ID__731B1205" FromRole="Places" ToRole="Cities" />
+    <NavigationProperty Name="Place_Comments" Relationship="Self.FK__Place_Com__Place__78D3EB5B" FromRole="Places" ToRole="Place_Comments" />
+    <NavigationProperty Name="Place_Likes" Relationship="Self.FK__Place_Lik__Place__77DFC722" FromRole="Places" ToRole="Place_Likes" />
+    <NavigationProperty Name="Places_Photos" Relationship="Self.FK__Places_Ph__Place__756D6ECB" FromRole="Places" ToRole="Places_Photos" />
+    <NavigationProperty Name="Places_Videos" Relationship="Self.FK__Places_Vi__Place__76619304" FromRole="Places" ToRole="Places_Videos" />
+  </EntityType>
+  <EntityType Name="Places_Photos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Place_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK__Places_Ph__Place__756D6ECB" FromRole="Places_Photos" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="Places_Videos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Place_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK__Places_Vi__Place__76619304" FromRole="Places_Videos" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="Report_Comments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Report_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City_Reports" Relationship="Self.FK__Report_Co__Repor__6ABAD62E" FromRole="Report_Comments" ToRole="City_Reports" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Report_Co__User___6BAEFA67" FromRole="Report_Comments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Days" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Log" Type="Double" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Reservati__User___26EFBBC6" FromRole="Reservations" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Subscriber">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Task1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FromManager" Type="Int32" Nullable="false" />
+    <Property Name="ToAdmin" Type="Int32" Nullable="false" />
+    <Property Name="Finished" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Tasks__FromManag__0FEC5ADD" FromRole="Tasks" ToRole="Admins" />
+    <NavigationProperty Name="Admin1" Relationship="Self.FK__Tasks__ToAdmin__10E07F16" FromRole="Tasks" ToRole="Admins" />
+  </EntityType>
+  <EntityType Name="User_City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <Property Name="Hotel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Resturant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK__User_City__City___703EA55A" FromRole="User_City" ToRole="Cities" />
+    <NavigationProperty Name="User" Relationship="Self.FK__User_City__User___2D9CB955" FromRole="User_City" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User_Photos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Log" Type="Double" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Country_Phot__User___34C8D9D1" FromRole="User_Photos" ToRole="Countries" />
+    <NavigationProperty Name="User" Relationship="Self.FK__User_Phot__User___34C8D9D1" FromRole="User_Photos" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User_Rates">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rate" Type="Double" Nullable="false" />
+    <Property Name="FUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="TUser_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__User_Rate__FUser__324172E1" FromRole="User_Rates" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_User_Rates_Users" FromRole="User_Rates" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User_Videos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Log" Type="Double" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Country_Vide__User___37A5467C" FromRole="User_Videos" ToRole="Countries" />
+    <NavigationProperty Name="User" Relationship="Self.FK__User_Vide__User___37A5467C" FromRole="User_Videos" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Traveller" Type="Boolean" Nullable="false" />
+    <Property Name="Facebook_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Google_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <Property Name="FaceBook_Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter_Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Google_Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Snap_Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Insta_Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FCM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="City_Rates" Relationship="Self.FK__City_Rate__User___2E70E1FD" FromRole="Users" ToRole="City_Rates" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__Users__Country_I__335592AB" FromRole="Users" ToRole="Countries" />
+    <NavigationProperty Name="Country_Photo_Comments" Relationship="Self.FK__Country_P__User___32616E72" FromRole="Users" ToRole="Country_Photo_Comments" />
+    <NavigationProperty Name="Country_Video_Comments" Relationship="Self.FK__Country_V__User___27E3DFFF" FromRole="Users" ToRole="Country_Video_Comments" />
+    <NavigationProperty Name="Favorites" Relationship="Self.FK__Favorites__User___57C7FD4B" FromRole="Users" ToRole="Favorites" />
+    <NavigationProperty Name="Place_Comments" Relationship="Self.FK__Place_Com__User___6F7F8B4B" FromRole="Users" ToRole="Place_Comments" />
+    <NavigationProperty Name="Place_Likes" Relationship="Self.FK__Place_Lik__User___30592A6F" FromRole="Users" ToRole="Place_Likes" />
+    <NavigationProperty Name="Report_Comments" Relationship="Self.FK__Report_Co__User___6BAEFA67" FromRole="Users" ToRole="Report_Comments" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__User___26EFBBC6" FromRole="Users" ToRole="Reservations" />
+    <NavigationProperty Name="User_City" Relationship="Self.FK__User_City__User___2D9CB955" FromRole="Users" ToRole="User_City" />
+    <NavigationProperty Name="User_Photos" Relationship="Self.FK__User_Phot__User___34C8D9D1" FromRole="Users" ToRole="User_Photos" />
+    <NavigationProperty Name="User_Rates" Relationship="Self.FK__User_Rate__FUser__324172E1" FromRole="Users" ToRole="User_Rates" />
+    <NavigationProperty Name="User_Rates1" Relationship="Self.FK_User_Rates_Users" FromRole="Users" ToRole="User_Rates" />
+    <NavigationProperty Name="User_Videos" Relationship="Self.FK__User_Vide__User___37A5467C" FromRole="Users" ToRole="User_Videos" />
+  </EntityType>
+  <Association Name="FK__Tasks__FromManag__0FEC5ADD">
+    <End Role="Admins" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admins">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="FromManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tasks__ToAdmin__10E07F16">
+    <End Role="Admins" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admins">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="ToAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Calls_Com__Count__6991A7CB">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Calls_Companies" Type="Self.Calls_Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Calls_Companies">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cars__City_ID__0A688BB1">
+    <End Role="Cities" Type="Self.City" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cars">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cars_Comp__Count__0D64F3ED">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+    <End Role="Cars_Companies" Type="Self.Cars_Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cars_Companies">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cities__Country___0E591826">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+    <End Role="Cities" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cities">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City_Phot__City___7226EDCC">
+    <End Role="Cities" Type="Self.City" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="City_Photos" Type="Self.City_Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City_Photos">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City_Rate__City___6E565CE8">
+    <End Role="Cities" Type="Self.City" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="City_Rates" Type="Self.City_Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City_Rates">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City_Repo__City___7132C993">
+    <End Role="Cities" Type="Self.City" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="City_Reports" Type="Self.City_Reports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City_Reports">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Flys__City_ID__09746778">
+    <End Role="Cities" Type="Self.City" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Flys" Type="Self.Fly" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Flys">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Hotels__City_ID__0880433F">
+    <End Role="Cities" Type="Self.City" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hotels" Type="Self.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Hotels">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Places__City_ID__731B1205">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="Places" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_City__City___703EA55A">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="User_City" Type="Self.User_City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_City">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__City_Rate__User___2E70E1FD">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="City_Rates" Type="Self.City_Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City_Rates">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Report_Co__Repor__6ABAD62E">
+    <End Role="City_Reports" Type="Self.City_Reports" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Report_Comments" Type="Self.Report_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City_Reports">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Report_Comments">
+        <PropertyRef Name="Report_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_P__Count__7DEDA633">
+    <End Role="Countries" Type="Self.Country" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Country_Photos" Type="Self.Country_Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Country_Photos">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_Phot__User___34C8D9D1">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Photos" Type="Self.User_Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Photos">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_V__Count__03A67F89">
+    <End Role="Countries" Type="Self.Country" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Country_Videos" Type="Self.Country_Videos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Country_Videos">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_Vide__User___37A5467C">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Videos" Type="Self.User_Videos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Videos">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favorites__Count__58BC2184">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Favorites">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Offers__Country___0F4D3C5F">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+    <End Role="Offers" Type="Self.Offer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Offers">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__Country_I__335592AB">
+    <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_P__Count__00CA12DE">
+    <End Role="Country_Photos" Type="Self.Country_Photos" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Country_Photo_Comments" Type="Self.Country_Photo_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country_Photos">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Country_Photo_Comments">
+        <PropertyRef Name="Country_Photo_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_P__User___32616E72">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Country_Photo_Comments" Type="Self.Country_Photo_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Country_Photo_Comments">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_V__Count__0682EC34">
+    <End Role="Country_Videos" Type="Self.Country_Videos" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Country_Video_Comments" Type="Self.Country_Video_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country_Videos">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Country_Video_Comments">
+        <PropertyRef Name="Country_Video_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Country_V__User___27E3DFFF">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Country_Video_Comments" Type="Self.Country_Video_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Country_Video_Comments">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Favorites__User___57C7FD4B">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Favorites" Type="Self.Favorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Favorites">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Place_Com__Place__78D3EB5B">
+    <End Role="Places" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Place_Comments" Type="Self.Place_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Place_Comments">
+        <PropertyRef Name="Place_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Place_Com__User___6F7F8B4B">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Place_Comments" Type="Self.Place_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Place_Comments">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Place_Lik__Place__77DFC722">
+    <End Role="Places" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Place_Likes" Type="Self.Place_Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Place_Likes">
+        <PropertyRef Name="Place_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Place_Lik__User___30592A6F">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Place_Likes" Type="Self.Place_Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Place_Likes">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Places_Ph__Place__756D6ECB">
+    <End Role="Places" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Places_Photos" Type="Self.Places_Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Places_Photos">
+        <PropertyRef Name="Place_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Places_Vi__Place__76619304">
+    <End Role="Places" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Places_Videos" Type="Self.Places_Videos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Places_Videos">
+        <PropertyRef Name="Place_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Report_Co__User___6BAEFA67">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Report_Comments" Type="Self.Report_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Report_Comments">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__User___26EFBBC6">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_City__User___2D9CB955">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="User_City" Type="Self.User_City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_City">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Phot__User___34C8D9D1">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Photos" Type="Self.User_Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Photos">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Rate__FUser__324172E1">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Rates" Type="Self.User_Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Rates">
+        <PropertyRef Name="FUser_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Rates_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="User_Rates" Type="Self.User_Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Rates">
+        <PropertyRef Name="TUser_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User_Vide__User___37A5467C">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Videos" Type="Self.User_Videos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Videos">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AboutUsPhotos" EntityType="Self.AboutUsPhoto" />
+    <EntitySet Name="AboutUsVideos" EntityType="Self.AboutUsVideo" />
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Calls_Companies" EntityType="Self.Calls_Companies" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="Cars_Companies" EntityType="Self.Cars_Companies" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="City_Photos" EntityType="Self.City_Photos" />
+    <EntitySet Name="City_Rates" EntityType="Self.City_Rates" />
+    <EntitySet Name="City_Reports" EntityType="Self.City_Reports" />
+    <EntitySet Name="Codes" EntityType="Self.Code" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Country_Photo_Comments" EntityType="Self.Country_Photo_Comments" />
+    <EntitySet Name="Country_Photos" EntityType="Self.Country_Photos" />
+    <EntitySet Name="Country_Video_Comments" EntityType="Self.Country_Video_Comments" />
+    <EntitySet Name="Country_Videos" EntityType="Self.Country_Videos" />
+    <EntitySet Name="Favorites" EntityType="Self.Favorite" />
+    <EntitySet Name="Flys" EntityType="Self.Fly" />
+    <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+    <EntitySet Name="Offers" EntityType="Self.Offer" />
+    <EntitySet Name="Place_Comments" EntityType="Self.Place_Comments" />
+    <EntitySet Name="Place_Likes" EntityType="Self.Place_Likes" />
+    <EntitySet Name="Places" EntityType="Self.Place" />
+    <EntitySet Name="Places_Photos" EntityType="Self.Places_Photos" />
+    <EntitySet Name="Places_Videos" EntityType="Self.Places_Videos" />
+    <EntitySet Name="Report_Comments" EntityType="Self.Report_Comments" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+    <EntitySet Name="Subscribers" EntityType="Self.Subscriber" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <EntitySet Name="User_City" EntityType="Self.User_City" />
+    <EntitySet Name="User_Photos" EntityType="Self.User_Photos" />
+    <EntitySet Name="User_Rates" EntityType="Self.User_Rates" />
+    <EntitySet Name="User_Videos" EntityType="Self.User_Videos" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Tasks__FromManag__0FEC5ADD" Association="Self.FK__Tasks__FromManag__0FEC5ADD">
+      <End Role="Admins" EntitySet="Admins" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tasks__ToAdmin__10E07F16" Association="Self.FK__Tasks__ToAdmin__10E07F16">
+      <End Role="Admins" EntitySet="Admins" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Calls_Com__Count__6991A7CB" Association="Self.FK__Calls_Com__Count__6991A7CB">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Calls_Companies" EntitySet="Calls_Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cars__City_ID__0A688BB1" Association="Self.FK__Cars__City_ID__0A688BB1">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Cars" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cars_Comp__Count__0D64F3ED" Association="Self.FK__Cars_Comp__Count__0D64F3ED">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Cars_Companies" EntitySet="Cars_Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cities__Country___0E591826" Association="Self.FK__Cities__Country___0E591826">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City_Phot__City___7226EDCC" Association="Self.FK__City_Phot__City___7226EDCC">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="City_Photos" EntitySet="City_Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City_Rate__City___6E565CE8" Association="Self.FK__City_Rate__City___6E565CE8">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="City_Rates" EntitySet="City_Rates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City_Repo__City___7132C993" Association="Self.FK__City_Repo__City___7132C993">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="City_Reports" EntitySet="City_Reports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Flys__City_ID__09746778" Association="Self.FK__Flys__City_ID__09746778">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Flys" EntitySet="Flys" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Hotels__City_ID__0880433F" Association="Self.FK__Hotels__City_ID__0880433F">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Hotels" EntitySet="Hotels" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Places__City_ID__731B1205" Association="Self.FK__Places__City_ID__731B1205">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_City__City___703EA55A" Association="Self.FK__User_City__City___703EA55A">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="User_City" EntitySet="User_City" />
+    </AssociationSet>
+    <AssociationSet Name="FK__City_Rate__User___2E70E1FD" Association="Self.FK__City_Rate__User___2E70E1FD">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="City_Rates" EntitySet="City_Rates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Report_Co__Repor__6ABAD62E" Association="Self.FK__Report_Co__Repor__6ABAD62E">
+      <End Role="City_Reports" EntitySet="City_Reports" />
+      <End Role="Report_Comments" EntitySet="Report_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_P__Count__7DEDA633" Association="Self.FK__Country_P__Count__7DEDA633">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Country_Photos" EntitySet="Country_Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_Phot__User___34C8D9D1" Association="Self.FK__Country_Phot__User___34C8D9D1">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="User_Photos" EntitySet="User_Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_V__Count__03A67F89" Association="Self.FK__Country_V__Count__03A67F89">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Country_Videos" EntitySet="Country_Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_Vide__User___37A5467C" Association="Self.FK__Country_Vide__User___37A5467C">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="User_Videos" EntitySet="User_Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favorites__Count__58BC2184" Association="Self.FK__Favorites__Count__58BC2184">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Favorites" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Offers__Country___0F4D3C5F" Association="Self.FK__Offers__Country___0F4D3C5F">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Offers" EntitySet="Offers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__Country_I__335592AB" Association="Self.FK__Users__Country_I__335592AB">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_P__Count__00CA12DE" Association="Self.FK__Country_P__Count__00CA12DE">
+      <End Role="Country_Photos" EntitySet="Country_Photos" />
+      <End Role="Country_Photo_Comments" EntitySet="Country_Photo_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_P__User___32616E72" Association="Self.FK__Country_P__User___32616E72">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Country_Photo_Comments" EntitySet="Country_Photo_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_V__Count__0682EC34" Association="Self.FK__Country_V__Count__0682EC34">
+      <End Role="Country_Videos" EntitySet="Country_Videos" />
+      <End Role="Country_Video_Comments" EntitySet="Country_Video_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Country_V__User___27E3DFFF" Association="Self.FK__Country_V__User___27E3DFFF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Country_Video_Comments" EntitySet="Country_Video_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Favorites__User___57C7FD4B" Association="Self.FK__Favorites__User___57C7FD4B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Favorites" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Place_Com__Place__78D3EB5B" Association="Self.FK__Place_Com__Place__78D3EB5B">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Place_Comments" EntitySet="Place_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Place_Com__User___6F7F8B4B" Association="Self.FK__Place_Com__User___6F7F8B4B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Place_Comments" EntitySet="Place_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Place_Lik__Place__77DFC722" Association="Self.FK__Place_Lik__Place__77DFC722">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Place_Likes" EntitySet="Place_Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Place_Lik__User___30592A6F" Association="Self.FK__Place_Lik__User___30592A6F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Place_Likes" EntitySet="Place_Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Places_Ph__Place__756D6ECB" Association="Self.FK__Places_Ph__Place__756D6ECB">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Places_Photos" EntitySet="Places_Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Places_Vi__Place__76619304" Association="Self.FK__Places_Vi__Place__76619304">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Places_Videos" EntitySet="Places_Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Report_Co__User___6BAEFA67" Association="Self.FK__Report_Co__User___6BAEFA67">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Report_Comments" EntitySet="Report_Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__User___26EFBBC6" Association="Self.FK__Reservati__User___26EFBBC6">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_City__User___2D9CB955" Association="Self.FK__User_City__User___2D9CB955">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_City" EntitySet="User_City" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Phot__User___34C8D9D1" Association="Self.FK__User_Phot__User___34C8D9D1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Photos" EntitySet="User_Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Rate__FUser__324172E1" Association="Self.FK__User_Rate__FUser__324172E1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Rates" EntitySet="User_Rates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Rates_Users" Association="Self.FK_User_Rates_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Rates" EntitySet="User_Rates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User_Vide__User___37A5467C" Association="Self.FK__User_Vide__User___37A5467C">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Videos" EntitySet="User_Videos" />
+    </AssociationSet>
+    <FunctionImport Name="City_Rate">
+      <Parameter Name="Rate" Mode="In" Type="Double" />
+      <Parameter Name="City_ID" Mode="In" Type="Int32" />
+      <Parameter Name="User_ID" Mode="In" Type="Int32" />
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EditFCM">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+      <Parameter Name="FCM" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Like_Place">
+      <Parameter Name="User_ID" Mode="In" Type="Int32" />
+      <Parameter Name="Place_ID" Mode="In" Type="Int32" />
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="User_Rate">
+      <Parameter Name="Rate" Mode="In" Type="Double" />
+      <Parameter Name="FUser_ID" Mode="In" Type="Int32" />
+      <Parameter Name="TUser_ID" Mode="In" Type="Int32" />
+      <Parameter Name="ReturnValue" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

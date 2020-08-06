@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Traveller.Models.Task>
+@using Traveller.Models
+@{
+    ViewBag.Title = "المهام";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int ID = int.Parse(User.Identity.Name);
+    Admin admin = new DB().Admins.Find(ID);
+}
+
+  <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">المهام</h3>
+        </div>
+    </div>
+    @if (admin.IsManager)
+    {
+        <div class="container-fluid">
+            <a href="~/Admins/AddTask" class="btn btn-success">اضافة مهمة</a>
+        </div>
+    }
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <div class=" row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            @if (admin.IsManager)
+                            {
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>المهمة</th>
+                                            <th>الحالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th>@item.Task1</th>
+                                                @if (item.Finished == true)
+                                                {
+                                                    <th>
+                                                        <i class="ti-check"></i>
+                                                    </th>
+                                                }
+                                                else
+                                                {
+                                                    <th>
+                                                        <i class="ti-close"></i>
+                                                    </th>
+                                                }
+
+
+                                                <th>
+                                                    <form action="~/Admins/DeleteTask/@item.ID" method="post">
+                                                        <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Task ?!');" type="submit">حذف</button>
+                                                    </form>
+                                                </th>
+                                            </tr>
+                                        }                                   
+                                    </tbody>
+                                </table>
+
+                            }
+                            else
+                            {
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>المهمة</th>
+                                            <th>الحالة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th>@item.Task1</th>
+                                                @if (item.Finished == true)
+                                                {
+                                                    <th>
+                                                        <i class="ti-check"></i>
+                                                    </th>
+                                                }
+                                                else
+                                                {
+                                                    <th>
+                                                        <form action="~/Admins/FinishTask/@item.ID" method="post">
+                                                            <button class="btn btn-danger" type="submit"><i class="ti-check"></i></button>
+                                                        </form>
+                                                    </th>
+                                                }
+                                                
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+    <!-- footer -->
+    <!-- End footer -->
+</div>
+<!-- End Page wrapper  -->

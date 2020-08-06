@@ -1,0 +1,489 @@
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Traveler</title>
+    <meta charset="utf-8" />
+    <link href="~/Content/style/bootstrap.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/images/fav.png" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Scripts/script/jquery.min.js"></script>
+    <script src="~/Scripts/script/move-top.js"></script>
+    <script src="~/Scripts/script/easing.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- Custom Theme files -->
+
+    <link href="~/Content/style/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/Content/style/style.css" rel="stylesheet" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700' rel='stylesheet' type='text/css'>
+    <!----//webfonts---->
+    <!----start-top-nav-script---->
+    <script>
+        $(function () {
+            var pull = $('#pull');
+            menu = $('nav ul');
+            menuHeight = menu.height();
+            $(pull).on('click', function (e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+            $(window).resize(function () {
+                var w = $(window).width();
+                if (w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+    </script>
+    <!----//End-top-nav-script---->
+    <style>
+        .item img {
+            width: 236px;
+            height: 467px;
+        }
+
+        .logo a img {
+            height: 100px;
+        }
+
+        #logo {
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-----start-container----->
+    <!-----header-section------>
+    <div class="header-section">
+        <!----- start-header---->
+        <div id="home" class="header">
+            <div class="container">
+                <div class="top-header" style="border-radius:15px;
+">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="../../images/logo.png" title="logo" />
+                            <!--<h3 title="logo" style="color:black;">travelers</h3>-->
+                        </a>
+                    </div>
+                    <!----start-top-nav---->
+                    <nav class="top-nav">
+                        <ul class="top-nav">
+                            <li class="active"><a href="#home" class="scroll">الرئيسية </a></li>
+                            <li class="page-scroll"><a href="#fea" class="scroll">الميزات</a></li>
+                            <li class="page-scroll"><a href="#gallery" class="scroll">المعرض</a></li>
+                            <li class="contatct-active" class="page-scroll"><a href="#contact" class="scroll">التواصل</a></li>
+                        </ul>
+                        <a href="#" id="pull"><img src="~/images/nav-icon.png" title="menu" /></a>
+                    </nav>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <!----- //End-header---->
+        <!----- start-slider---->
+        <!----start-slider-script---->
+        <script src="~/Scripts/script/responsiveslides.min.js"></script>
+
+        <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+                // Slideshow 4
+                $("#slider4").responsiveSlides({
+                    auto: true,
+                    pager: true,
+                    nav: true,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
+
+            });
+        </script>
+        <!----//End-slider-script---->
+        <!-- Slideshow 4 -->
+        <div id="top" class="callbacks_container">
+            <ul class="rslides" id="slider4">
+                <li>
+                    <img src="~/images/slide.png" alt="">
+                    <div class="caption text-center">
+                        <div class="slide-text-info">
+                            <h1>مقدمة  <span>الرحالة</span></h1>
+                            <h2>  معـــــــك اينمــــا كنـــــت  </h2>
+                            <div class="slide-text">
+                                <ul>
+                                    <li><span> </span> مساعدة المسافر العثور على الفنادق </li>
+                                    <li><span> </span> معرفة المعالم السياحية للمدن </li>
+                                    <li><span> </span> ترتيب الرحلات و الزيارات </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <div class="big-btns">
+                                <a class="download-App" href="#"><label> </label> متجر ابل </a>
+                                <a class="download-Play" href="#"><label> </label> متجر جوجل</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/images/slide1.png" alt="">
+                    <div class="caption text-center">
+                        <div class="slide-text-info">
+                            <h1> مقدمة <span> الرحالة </span></h1>
+                            <h2>  معـــــــك اينمــــا كنـــــت  </h2>
+                            <div class="slide-text">
+                                <ul>
+
+                                    <li><span> </span> مساعدة المسافر العثور على الفنادق </li>
+                                    <li><span> </span> معرفة المعالم السياحية للمدن </li>
+                                    <li><span> </span> ترتيب الرحلات و الزيارات </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <div class="big-btns">
+                                <a class="download-App" href="#"><label> </label> متجر ابل </a>
+                                <a class="download-Play" href="#"><label> </label> متجر جوجل </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/images/slide.png" alt="">
+                    <div class="caption text-center">
+                        <div class="slide-text-info">
+                            <h1>مقدمة <span> افضل برامج السفر </span></h1>
+                            <h2> معـــــــك اينمــــا كنـــــت   </h2>
+                            <div class="slide-text">
+                                <ul>
+
+                                    <li><span> </span> مساعدة المسافر العثور على الفنادق </li>
+                                    <li><span> </span> معرفة المعالم السياحية للمدن </li>
+                                    <li><span> </span> ترتيب الرحلات و الزيارات </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <div class="big-btns">
+                                <a class="download-App" href="#"><label> </label> متجر ابل </a>
+                                <a class="download-Play" href="#"><label> </label> متجر جوجل </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/images/slide1.png" alt="">
+                    <div class="caption text-center">
+                        <div class="slide-text-info">
+                            <h1>مقدمة <span> التطبيق</span></h1>
+                            <h2> معـــــــك اينمــــا كنـــــت   </h2>
+                            <div class="slide-text">
+                                <ul>
+
+                                    <li><span> </span> مساعدة المسافر العثور على الفنادق </li>
+                                    <li><span> </span> معرفة المعالم السياحية للمدن </li>
+                                    <li><span> </span> ترتيب الرحلات و الزيارات </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <div class="big-btns">
+                                <a class="download-App" href="#"><label> </label> متجر ابل </a>
+                                <a class="download-Play" href="#"><label> </label> متجر جوجل </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+        <!-----divice----->
+        <div class="divice-demo">
+            <img src="../../images/666.png" title="demo" />
+        </div>
+        <!---//divice----->
+        <!----- //End-slider---->
+    </div>
+    <!-----//header-section----->
+    <!----features----->
+    <div id="fea" class="features">
+        <div class="container">
+            <div class="section-head text-center">
+                <h3><span class="frist"> </span>تطبيق رحالة<span class="second"> </span></h3>
+                <p>
+                    واحد من أهم التطبيقات التي يحتاجها كل مسافر و مسافر خاص ، حيث يقدم هذا التطبيق خدمات مهمة جدا والتي تمنع الارتباك لدى المستخدم في البلد الذي يسافر إليها ، من خلال توفير مخطط للتنقل بين يديه حيث يجمع كل معلومات كاملة وأهم المعالم السياحية والثقافية لدول الوجهة السياحية خلال الرحلة ، وخلال هذا التطبيق يقوم بحفظ المعلومات التي يحتاجها في ملفه الشخصي والتحرك خلالها بسهولة ويسر
+                    كما يوفر التطبيق خدمة إنشاء صفحات للمسافر والزائرين لمشاهدة أسفارهم بجميع لغات العالم مصحوبة بتقارير أثناء التصوير أثناء التجوال للحظة.
+                </p>
+            </div>
+            <!----features-grids----->
+            <div class="features-grids" dir=rtl>
+                <div class="col-md-4 features-grid">
+                    <div class="features-grid-info">
+                        <div class="col-md-10 features-info" style="float:right;">
+                            <h4> الاعدادات البسيطة </h4>
+                            <p> اعدادات سهلة وبسيطة لتحديد الاماكت واختيار الفنادق والمعالم السياحية والاماكن الاثرية وكل شيء فأكثر </p>
+                        </div>
+                        <div class="col-md-2 features-icon">
+                            <span class="f-icon0"> </span>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="features-grid-info">
+                        <div class="col-md-2 features-icon">
+                            <span class="f-icon1"> </span>
+                        </div>
+                        <div class="col-md-10 features-info">
+                            <h4> النشر </h4>
+                            <p>
+                                كما  يقوم التطبيق بنشر تقارير ورحلات اصحاب الخبرات في مواقع التواصل الاجتماعي الخاصه بالتطبيق وتكون موثقة باسمه وحساباته  واليكم
+                            </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="features-grid-info">
+                        <div class="col-md-2 features-icon">
+                            <span class="f-icon2"> </span>
+                        </div>
+                        <div class="col-md-10 features-info">
+                            <h4> التنبيهات </h4>
+                            <p>
+                                رتب رحلتي حيث  يستطيع من خلالها السائح طلب من التطبيق عمل جدول سياحي  وتنظيمي مصحوب بتنبيهات  بدايه من اختياره  المدينه او الاماكن السياحيه  وذلك حسب اختيار السائح سواء خاصية القرب والبعد او  حسب خاصية التقييم لكل مكان سياحي والتي  تم تقيمها من خلال الرحاله او الزائرين لتلك  الاماكن السياحيه والمطاعم والمقاهي وايضا افضل الخيارات من حيث الطيران والفنادق اومن  خلال  التقارير السياحيه  التي بثها الرحاله خلال رحلتهم.
+                            </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div><!---end-features-grid---->
+                <div class="col-md-4 features-grid">
+                    <div class="big-divice">
+                        <img src="~/images/3.png" title="features-demo" />
+                    </div>
+                </div><!---end-features-grid---->
+                <div class="col-md-4 features-grid">
+                    <div class="features-grid-info">
+                        <div class="col-md-2 features-icon1">
+                            <span class="f-icon3"> </span>
+                        </div>
+                        <div class="col-md-10 features-info">
+                            <h4> ملف شخصي </h4>
+                            <p>
+                                ما يقدم التطبيق  خدمه  انشاء الصفحات الخاصه للرحاله وكذلك الزائرين  لعرض رحالتهم  بكل لغات العالم مرفقة  بتقارير مصوره اثناء تجوالهم لحظه بلحظه
+                            </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="features-grid-info">
+                        <div class="col-md-2 features-icon1">
+                            <span class="f-icon4"> </span>
+                        </div>
+                        <div class="col-md-10 features-info">
+                            <h4> معك لحظة بلحظة </h4>
+                            <p> هو الطريق  الاسهل للسائح للتعرف على البلد التي  يرغب في  السفر اليها حيث يمكنه من  الاطلاع  على تقارير سياحيه فقط عبر ايقونه واحده بضغطه واحده  تظهرله  خلالها  جميع التقارير السياحيه التي شاركها  الرحاله  االمشاركين بالتطبيق خلال رحلته  كما  يستطيع الرحال او المسافر  اضافة مواقع التواصل الخاصه به ونشرها وذلك لخدمة حسابات الرحاله وخدمة السائح في التواصل مع صاحب التقرير مباشره  ومشاركته خلال رحلته لحظه بلحظه  . </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="features-grid-info">
+                        <div class="col-md-2 features-icon1">
+                            <span class="f-icon5"> </span>
+                        </div>
+                        <div class="col-md-10 features-info">
+                            <h4> مشاركة الصور </h4>
+                            <p>
+                                كما يوفر للرحاله نشر خبراتهم ورحلاتهم على منصة نعدكم بأن تكون الاكبر والاقوى في عالم السياحة والسفر في العالم
+                            </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div><!---end-features-grid---->
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!----//features-grids----->
+    <!----//features----->
+    <!----screen-shot-gallery---->
+    <div id="gallery" class="screen-shot-gallery">
+        <div class="container">
+            <div class="section-head text-center">
+                <h3><span class="frist"> </span> معرض لقطات من التطبيق <span class="second"> </span></h3>
+                <p>
+                    بعد التطور التكنولوجي الهائل الذي شهده  العالم  مؤخرا  شهدت هوايه الترحال  طفره كبيره من المتعه  والجمال  واصبح العالم قريه واحده  بعدما كان مقتصرا  خلف الشاشات .
+                    الان  اجعله واقعا ملموسا  امام عينيك استيقظ كل يوم في مكان مختلف، شاهد إبداعات وتغطيات وتقارير الرحاله في جميع أنحاء بلدان العالم، احظى بمتعة "السفر" وتجول  حول العالم بعيون أصحاب الخبرات، واترك بصمتك  خلال تلك الأماكن وانشر خبراتك وماتعلمته في سفرك مع تطبيق يجمع خبرات الرحاله من مختلف دول العالم لتجتمع الخبره العربيه مع الخبرات الاجنبيه للرحالة من غير وطننا العربي
+                    بضغطه واحده
+                </p>
+            </div>
+        </div>
+        <!----sreen-gallery-cursual---->
+        <div class="sreen-gallery-cursual">
+            <!-- requried-jsfiles-for owl -->
+            <link href="~/Content/style/owl.carousel.css" rel="stylesheet" />
+            <script src="~/Scripts/script/owl.carousel.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $("#owl-demo").owlCarousel({
+                        items: 3,
+                        lazyLoad: true,
+                        autoPlay: true,
+                    });
+                });
+            </script>
+            <!-- //requried-jsfiles-for owl -->
+            <!-- start content_slider -->
+            <div class="container">
+                <div id="owl-demo" class="owl-carousel">
+                    <div class="item">
+                        <img class="lazyOwl" data-src="../../images/1.jpg" alt="screen-name">
+                    </div>
+                    <div class="item">
+                        <img class="lazyOwl" data-src="../../images/33.jpg" alt="screen-name">
+                    </div>
+                    <div class="item">
+                        <img class="lazyOwl" data-src="../../images/44.jpg" alt="screen-name">
+                    </div>
+                    <div class="item">
+                        <img class="lazyOwl" data-src="../../images/55.jpg" alt="screen-name">
+                    </div>
+                    <div class="item">
+                        <img class="lazyOwl" data-src="../../images/66.jpg" alt="screen-name">
+                    </div>
+
+                </div>
+            </div>
+            <!--//sreen-gallery-cursual---->
+        </div>
+    </div>
+    <!--//screen-shot-gallery---->
+    <!---- show-reel ---->
+    <!---pop-up-box---->
+    <link href="~/Content/style/popuo-box.css" rel="stylesheet" />
+    <script src="~/Scripts/script/jquery.magnific-popup.js"></script>
+    <!---//pop-up-box---->
+    <div class="show-reel text-center">
+        <div class="container">
+            <h5> شاهد <a class="popup-with-zoom-anim" href="#small-dialog"><span> </span></a> الاعلان </h5>
+            <div id="small-dialog" class="mfp-hide">
+                <iframe src="https://www.youtube.com/embed/krkq7rYiTXE" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen dir="ltr" lang="en"> </iframe>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('.popup-with-zoom-anim').magnificPopup({
+                        type: 'inline',
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+                        overflowY: 'auto',
+                        closeBtnInside: true,
+                        preloader: false,
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-zoom-in'
+                    });
+
+                });
+            </script>
+        </div>
+    </div>
+    <!---- //show-reel ---->
+    <div class="clearfix"> </div>
+    <!-----getintouch----->
+    <div id="contact" class="getintouch">
+        <div class="container">
+            <div class="section-head text-center">
+                <h3><span class="frist"> </span> كن على تواصل <span class="second"> </span></h3>
+                <p> </p>
+            </div>
+            <!---->
+            <div class="col-md-9 getintouch-left">
+                <div class="contact-form col-md-10">
+                    <h3> قل مرحبا! </h3>
+                    <form action="~/Home/ContactUs" method="post">
+                        <input type="text" name="Name" placeholder="name" required />
+                        <input type="text" name="Email" placeholder="email" required />
+                        <textarea placeholder="message" name="Message" required /> 
+                        </textarea>
+                        <input type="submit" value="send" />
+                    </form>
+                </div>
+                <ul class="footer-social-icons col-md-2 text-center">
+                    <li><a class="f-be" href="#"><span> </span></a></li>
+                    <li><a class="f-tw" href="#"><span> </span></a></li>
+                    <li><a class="f-db" href="#"><span> </span></a></li>
+                    <li><a class="f-ti" href="#"><span> </span></a></li>
+                    <li><a class="f-go" href="#"><span> </span></a></li>
+                    <div class="clearfix"> </div>
+                </ul>
+            </div>
+            <div class="col-md-2 getintouch-left">
+                <div class="footer-divice">
+                    <img src="~/images/2.png" title="getintouch" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---//getintouch----->
+    <!-----footer----->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 footer-grid about-info">
+                    <a href="#">
+                        <img id="logo" src="../../images/logo.png" title="travelers" />
+                        <!--<h3 title="logo" style="color:black;">travelers</h3>-->
+                    </a>
+                    <p>
+                        :
+                        هو أحد أهم التطبيقات التي يحتاجها كل مُسافر وخاصه الرحاله ، حيث  يقدم  هذا التطبيق خدمات مهمة جدًا توقف حيرة المستخدم في البلاد المسافر لها، وذلك بتوفيره مخطط للتنقل بين يديه  حيث يقوم بجمع جميع المعلومات الكامله واهم المعالم الحضاريه والسياحيه للبلدان السياحيه المقصوده خلال رحلته ويستطيع السائح من خلال هذا التطبيق  حفظ المعلومات التي يحتاجها في ملفه الخاص والتنقل عن طريقها بكل سهوله ويسر
+                        كما يقدم التطبيق  خدمه  انشاء الصفحات الخاصه للرحاله وكذلك الزائرين  لعرض رحالتهم  بكل لغات العالم مرفقة  بتقارير مصوره اثناء تجوالهم لحظه بلحظه
+                    </p>
+                </div>
+                <div class="col-md-3 footer-grid subscribe">
+                    <h3>اشتراك </h3>
+                    <form action="~/Home/Subscribe" method="post">
+                        <input type="text" name="Email" placeholder="Enter Your mail" required />
+                        <input type="submit" value="" />
+                    </form>
+                    <p> اشترك كي تحصل على الجديد لحظة بلحظة </p>
+                </div>
+                <div class="col-md-3 footer-grid explore">
+                    <h3>اكتشف</h3>
+                    <ul class="col-md-6">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#fea">الميزات</a></li>
+                        <li><a href="#gallery">المعرض</a></li>
+                        <li><a href="#contact">التواصل</a></li>
+                    </ul>
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-3 footer-grid copy-right">
+                    <p> تميزنا مــــن خــلال سنــــوات الخبرة بتقــــــديم باقــات متكاملــــة من منتجــات و حلول و خدمات تقنيــة المعلومــات والاتصــــالات المتنوعــــة لنسطــــر بذلك نجاحات متوالــــية قائمة على سياستنا الرامية إلى خلق و إيجاد خدمات نوعية متميزة تلبــــي تطلعــــات عملائـــــــنا من كافــــة القطاعات المختــلفة بدأ بالأفراد والشركات بمختــلف أحجامها وانتهاءً بالقطاعات </p>
+                    <p class="copy">Design by <a href="http://rooyadev.com/">Rooya Dev</a></p>
+                </div>
+                <div class="clearfix"> </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $().UItoTop({ easingType: 'easeOutQuart' });
+
+                    });
+                </script>
+                <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+            </div>
+        </div>
+    </div>
+    <!---//footer----->
+</body>
+</html>

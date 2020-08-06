@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Traveller.Models.Country>
+
+@{
+    ViewBag.Title = "الدول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">الدول </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Countries/Create" class="btn btn-success">اضافة دوله</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>الاسم  </th>
+                                    <th>عدد المدن  </th>
+                                    <th>عدد المستخدمين</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>الاسم  </th>
+                                    <th>عدد المدن  </th>
+                                    <th>عدد المستخدمين</th>
+                                    <th></th>
+
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Cities.Count</td>
+                                        <td>@item.Users.Count</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Countries/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Countries/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Countries/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Country ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }                             
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+
+

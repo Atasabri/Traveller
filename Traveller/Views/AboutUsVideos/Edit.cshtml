@@ -1,0 +1,61 @@
+﻿@model Traveller.Models.AboutUsVideo
+
+@{
+    ViewBag.Title = "تعديل الفيديو";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تعديل  الفيديو</h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/AboutUsVideos/Edit" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("ID", Model.ID)
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">التفاصيل</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الفيديو</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Video" />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">حفظ</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+</div>
+<!-- End Page wrapper  -->

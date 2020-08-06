@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Traveller.Models.Code>
+@{
+    ViewBag.Title = "الاكواد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">الاكواد </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-success" onclick="CodeGet();">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="m-b-0">توليد كود</h2>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div>
+            </div>
+        </div>
+
+        <br />
+        <label class="border" id="status"></label>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>الكود</th>
+                                        <th>   X   </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th>@DEL.encrypt(item.ID.ToString())</th>
+                                            <th>
+                                                <form action="~/Admins/DeleteCode/@item.ID" method="post">
+                                                    <button class="btn btn-red" type="submit">
+                                                        <i class="ti-close"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                            <th></th>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<script>
+
+
+                       function CodeGet() {
+
+
+                           $("#status").html("Checking...")
+
+
+                           $.post("@Url.Action("GetCode", "Admins")", {
+
+                       },
+                       function (data) {
+
+                                   $("#status").html(data);
+                                   $("#status").css("color", "Green");
+                       }
+
+        )
+
+                       }
+
+
+</script>
+

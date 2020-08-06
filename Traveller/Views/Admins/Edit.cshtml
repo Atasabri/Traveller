@@ -1,0 +1,80 @@
+﻿@model Traveller.Models.Admin
+
+@{
+    ViewBag.Title = "تعديل مسؤول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تعديل مسؤول </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row" dir="rtl">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Admins/Edit" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("ID",Model.ID)
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">اسم المستخدم</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">كلمة المرور</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">هو مدير؟ </label>
+                                <div class="form-check col-md-1">
+                                    @Html.EditorFor(model => model.IsManager)
+                                    @Html.ValidationMessageFor(model => model.IsManager, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Is Maniger</label>
+                        </div>-->
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صورة</label>
+                                <div class="">
+                                    <input type="file" name="Photo" />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">حفظ</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+    <!-- footer -->
+    <!-- End footer -->
+</div>
+<!-- End Page wrapper  -->

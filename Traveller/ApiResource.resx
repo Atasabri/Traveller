@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CityAdded" xml:space="preserve">
+    <value>You Add This City Successfully</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>You Edit Your Profile Successfully</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="InValidCode" xml:space="preserve">
+    <value>This Traveller Code Not Valid !!</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>This Is Not Valid Email !</value>
+  </data>
+  <data name="InvalidLogin" xml:space="preserve">
+    <value>This User Name Is InValid !!</value>
+  </data>
+  <data name="RequiredPhoto" xml:space="preserve">
+    <value>Please Select A Profile Photo !</value>
+  </data>
+  <data name="ReSuccess" xml:space="preserve">
+    <value>You Add This  Reservation Successfully</value>
+  </data>
+  <data name="UserNameUsed" xml:space="preserve">
+    <value>This User Name Is Used , Try Another One !</value>
+  </data>
+  <data name="ReportAdded" xml:space="preserve">
+    <value>You Add Report Successfully</value>
+  </data>
+  <data name="UserEmailUsed" xml:space="preserve">
+    <value>This User Email Is Used , Try Another One !</value>
+  </data>
+  <data name="UserPhoneUsed" xml:space="preserve">
+    <value>This User Phone Is Used , Try Another One !</value>
+  </data>
+  <data name="UserNameNotFound" xml:space="preserve">
+    <value>This Name Not Found !!</value>
+  </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Now You Can Check Your Email </value>
+  </data>
+  <data name="PlaceAdded" xml:space="preserve">
+    <value>You Added This Place Successfuly</value>
+  </data>
+  <data name="DeleteRE" xml:space="preserve">
+    <value>You Delete Reservation Successfully</value>
+  </data>
+  <data name="EditRE" xml:space="preserve">
+    <value>You Edit Reservation Successfully</value>
+  </data>
+  <data name="AddPhoto" xml:space="preserve">
+    <value>You Added This Photo Successfully</value>
+  </data>
+  <data name="AddVideo" xml:space="preserve">
+    <value>You Added This Video Successfully</value>
+  </data>
+  <data name="DeleteComment" xml:space="preserve">
+    <value>You Delete This Comment Successfully</value>
+  </data>
+  <data name="DeletePhoto" xml:space="preserve">
+    <value>You Delete This Photo Successfully</value>
+  </data>
+  <data name="DeleteVideo" xml:space="preserve">
+    <value>You Delete This Video Successfully</value>
+  </data>
+  <data name="DeleteVisit" xml:space="preserve">
+    <value>You Delete This Visit Successfully</value>
+  </data>
+  <data name="EditPhoto" xml:space="preserve">
+    <value>You Edit This Photo Successfully</value>
+  </data>
+  <data name="EditVideo" xml:space="preserve">
+    <value>You Edit This Video Successfully</value>
+  </data>
+  <data name="LikePlace" xml:space="preserve">
+    <value>You Like This Place Successfully</value>
+  </data>
+  <data name="RateCity" xml:space="preserve">
+    <value>You Rate This City Successfully</value>
+  </data>
+  <data name="RateTraveller" xml:space="preserve">
+    <value>You Rate This Traveller Successfully</value>
+  </data>
+  <data name="UnLikePlace" xml:space="preserve">
+    <value>You UnLike This Place Successfully</value>
+  </data>
+  <data name="EditVisit" xml:space="preserve">
+    <value>You Edit This Visit Successfully</value>
+  </data>
+  <data name="AddedFavorite" xml:space="preserve">
+    <value>You Add This Country To Favorites Successfully</value>
+  </data>
+  <data name="DeleteFavorite" xml:space="preserve">
+    <value>You Delete This Country From Favorites Successfully</value>
+  </data>
+  <data name="UserAddFavorites" xml:space="preserve">
+    <value>You was  Added This Country To Favorites </value>
+  </data>
+</root>

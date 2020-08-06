@@ -1,0 +1,122 @@
+﻿@model Traveller.Models.Offer
+@using Traveller.Models
+@{
+    ViewBag.Title = "اضافة عرض";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">اضافة عرض </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Offers/Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">السعر</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">تاريخ بدأ العرض</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control",@type="date" } })
+                                    @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">تاريخ انتهاء العرض</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">الايام</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Days_Number, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Days_Number, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">العملة</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Currency, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Currency, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">عدد الاشخاص</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Visitors_Number, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Visitors_Number, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4"> الدولة</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Country_ID", new SelectList(new DB().Countries, "ID", "Name"), "-Select Country -", new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">التفاصيل </label>
+                                <div class="col-md-8">
+                                    <textarea rows="8" cols="40" name="Description" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صورة</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Photo" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">اضافة</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+
+</div>
+<!-- End Page wrapper  -->

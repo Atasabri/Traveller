@@ -1,0 +1,178 @@
+﻿@using Traveller.Models
+@{
+    ViewBag.Title = "لوحة التحكم";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DB db = new DB();
+    int id = int.Parse(User.Identity.Name);
+    Admin admin = db.Admins.Find(id);
+}
+
+  <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">لوحة التحكم </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+                <div class="col-md-3">
+                    <div class="card bg-primary p-20">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="ti-harddrives f-s-40"></i></span>
+                            </div>
+                            <div class="media-body media-text-left">
+                                <h2 class="color-white">@db.Tasks.Count()</h2>
+                                <p class="m-b-0">المهام</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-primary p-20">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="fa fa-map-marker"></i></span>
+                            </div>
+                            <div class="media-body media-text-left">
+                                <h2 class="color-white">@db.Countries.Count()</h2>
+                                <p class="m-b-0">الدول</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-primary p-20">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="fa fa-location-arrow"></i></span>
+                            </div>
+                            <div class="media-body media-text-left">
+                                <h2 class="color-white">@db.Cities.Count()</h2>
+                                <p class="m-b-0">المدن</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-primary p-20">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="ti-user f-s-40"></i></span>
+                            </div>
+                            <div class="media-body media-text-left">
+                                <h2 class="color-white">@db.Users.Count()</h2>
+                                <p class="m-b-0">المستخدمين</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-danger-dark p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-location-pin f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Places.Count()</h2>
+                            <p class="m-b-0">الاماكن</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-home f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Hotels.Count()</h2>
+                            <p class="m-b-0">الفنادق</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info-dark p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-cloud f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Flys.Count()</h2>
+                            <p class="m-b-0">الطيران</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-primary-dark p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-car f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Cars.Count()</h2>
+                            <p class="m-b-0">السيارات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-pink p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-mobile f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Calls_Companies.Count()</h2>
+                            <p class="m-b-0">شركات الاتصال</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-truck f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Cars_Companies.Count()</h2>
+                            <p class="m-b-0">شركات السيارات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-danger p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-bookmark-alt f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-left">
+                            <h2 class="color-white">@db.Offers.Count()</h2>
+                            <p class="m-b-0">العروض</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+</div>
+<!-- End Page wrapper  -->

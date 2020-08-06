@@ -1,0 +1,58 @@
+﻿@model Traveller.Models.Country_Photos
+
+@{
+    ViewBag.Title = "تفاصيل الصورة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تفاصيل الصورة الخاصة بخدمات السفر </h3>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <a href="~/Country_Photos/Edit/@Model.ID" class="btn btn-success"> تعديل الصورة</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>تفاصيل الصورة </h2>
+                    </div>
+                    <h4>@Model.Description</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> الدولة </h2>
+                    </div>
+                    <h4>@Model.Country.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> الصورة</h2>
+                    </div>
+                    <h4>
+                        <img src="~/Uploads/Country_Photos/@(Model.ID).jpg" alt="" width="200" height="200" style="border-radius:50%" />
+                    </h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>

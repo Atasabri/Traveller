@@ -1,0 +1,624 @@
+﻿@model Traveller.Models.Country
+@using System.IO;
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تفاصيل الدوله </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Countries/Edit/@Model.ID" class="btn btn-success"> تعديل  الدولة</a>
+    </div>
+
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم الدولة</h2>
+                    </div>
+                    <h4>@Model.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> عدد المدن</h2>
+                    </div>
+                    <h4>@Model.Cities.Count</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> عدد شركات الاتصالات</h2>
+                    </div>
+                    <h4>@Model.Calls_Companies.Count</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> عدد شركات السيارات</h2>
+                    </div>
+                    <h4>@Model.Cars_Companies.Count</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> عدد العروض</h2>
+                    </div>
+                    <h4>@Model.Offers.Count</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>دائرة العرض</h2>
+                    </div>
+                    <h4>@Model.Log</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>خط الطول</h2>
+                    </div>
+                    <h4>@Model.Lat</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>رقم الشرطة</h2>
+                    </div>
+                    <h4>@Model.Police_Number</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>رقم الاسعاف</h2>
+                    </div>
+                    <h4>@Model.Ambulance_Number</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>رقم الاطفاء</h2>
+                    </div>
+                    <h4>@Model.Fire_Number</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>العملة</h2>
+                    </div>
+                    <h4>@Model.Currency</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> اسم العملة</h2>
+                    </div>
+                    <h4>@Model.CurrencyName</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>الصورة</h2>
+                    </div>
+                    <h4>
+                        <img src="~/Uploads/Countries/@(Model.ID).jpg" width="200" height="200" style="border-radius:50%" alt="" /> 
+                    </h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="cardo">
+                    <div class="card-title">
+                        <h2>التاريخ</h2>
+                    </div>
+                    <p>
+                       @Model.History
+                    </p>
+                    @if (new FileInfo(Server.MapPath("~/Uploads/Countries/HistoryPDF/" + Model.ID + ".pdf")).Exists)
+                    {
+                        <div class="card-body">
+                            <a class="btn btn-info" href="~/Countries/DownLoadHistory/@(Model.ID)?Name=@Model.Name">تحميل PDF</a>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="cardo">
+                    <div class="card-title">
+                        <h2>القواعد</h2>
+                    </div>
+                    <p>
+                        @Model.Roles
+                       </p>
+@if (new FileInfo(Server.MapPath("~/Uploads/Countries/RolesPDF/" + Model.ID + ".pdf")).Exists)
+{
+                        <div class="card-body">
+                            <a class="btn btn-info" href="~/Countries/DownLoadRoles/@(Model.ID)?Name=@Model.Name">تحميل PDF</a>
+                        </div>
+}
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+
+
+<!-- End Page wrapper  -->
+
+
+
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">المدن </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Cities/Create" class="btn btn-success">اضافة مدينة</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>اسم المدينة  </th>
+                                    <th>عدد الاماكن السياحية  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>اسم المدينة  </th>
+                                    <th>عدد الاماكن السياحية  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Cities)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Places.Count</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Cities/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Cities/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Cities/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This City ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">شركات الاتصالات </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Calls_Companies/Create" class="btn btn-success"> اضافة شركة اتصال </a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example1" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>اسم الشركة  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>اسم الشركة  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Calls_Companies)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Calls_Companies/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Calls_Companies/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Calls_Companies/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Call Company ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">شركات السيارات </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Cars_Companies/Create" class="btn btn-success">اضافة شركة سيارات</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example2" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>اسم الشركة  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>اسم الشركة  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Cars_Companies)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Cars_Companies/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Cars_Companies/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Cars_Companies/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Call Company ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center"> العروض </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/offers/Create" class="btn btn-success">اضافة عرض</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example3" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>السعر  </th>
+                                    <th>عدد الايام  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>السعر  </th>
+                                    <th>عدد الايام  </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Offers)
+                                {
+                                    <tr>
+                                        <td>@item.Price</td>
+                                        <td>@item.Days_Number</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Offers/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Offers/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Offers/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Call Company ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">صور خدمات السفر </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Country_Photos/Create" class="btn btn-success">اضافة صورة</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>تفاصيل الصورة  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th> تفاصيل الصورة   </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Country_Photos)
+                                {
+                                    <tr>
+                                        <td>@item.Description</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Country_Photos/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Country_Photos/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Country_Photos/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Photo ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+<!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">فيديوهات خدمات السفر </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Country_Videos/Create" class="btn btn-success">اضافة فيديو</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>تفاصيل الفيديو  </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th> تفاصيل الفيديو   </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach (var item in Model.Country_Videos)
+                                {
+                                    <tr>
+                                        <td>@item.Description</td>
+                                        <td>
+                                            <div class="dropdown show">
+                                                <a data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ti-settings">
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a href="~/Country_Videos/Details/@(item.ID)"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                    <a href="~/Country_Videos/Edit/@(item.ID)"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                    <li>
+                                                        <form action="~/Country_Videos/Delete/@(item.ID)" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Video ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+

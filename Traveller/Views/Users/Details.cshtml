@@ -1,0 +1,362 @@
+﻿@model Traveller.Models.User
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+        .star-ratings-sprite {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+            font-size: 0;
+            height: 21px;
+            line-height: 0;
+            overflow: hidden;
+            text-indent: -999em;
+            width: 110px;
+            margin: 0 auto;
+        }
+
+
+        .star-ratings-sprite-rating {
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+            background-position: 0 100%;
+            float: left;
+            height: 21px;
+            display: block;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+</style>
+  <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">الصفحة الشخصية</h3>
+        </div>
+
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-two">
+                            <header>
+                                <div class="avatar">
+                                        <img src="~/Uploads/Users/@(Model.Name).jpg" height="100" alt="@Model.Name" />
+                                </div>
+                            </header>
+
+                            <h3>@Model.Name</h3>
+                            <div class="desc">
+                                @if(Model.Is_Traveller)
+                                {
+                                    <span>خبير سفر</span>
+                                }
+                               </div>
+                            <div class="desc">
+                                <div class="cont">
+                                    @{ 
+                                        double Rating = Model.User_Rates1.Count != 0 ? Model.User_Rates1.Select(x => x.Rate).Average() : 0;
+                                        double value = Rating * 20;
+                                    }
+                                    <div class="star-ratings-sprite"><span style="width:@(value)%" class="star-ratings-sprite-rating"></span></div>
+                                </div>
+
+                            </div>
+                            <div class="contacts">
+                                @if (!string.IsNullOrEmpty(Model.FaceBook_Link))
+                                {
+                                    <a href="@Model.FaceBook_Link"><i class="fa ti-facebook"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Twitter_Link))
+                                {
+                                    <a href="@Model.Twitter_Link"><i class="fa ti-twitter"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Google_Link))
+                                {
+                                    <a href="@Model.Google_Link"><i class="fa ti-google"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Snap_Link))
+                                {
+                                    <a href="@Model.Snap_Link"><i class="fa ti-"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Insta_Link))
+                                {
+                                    <a href="@Model.Insta_Link"><i class="fa ti-google"></i></a>
+                                }
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-12">
+                <div class="card" style="text-align:right;">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#info" role="tab">حول</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#Photos" role="tab">الصور</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#Vedios" role="tab">الفيديوهات</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#Reservations" role="tab">الحجوزات</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#visits" role="tab">الزيارات</a> </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!--INFO-->
+                        <div class="tab-pane active" id="info" role="tabpanel">
+                            <div class="card-title">
+                                <h4 style="margin-top:20px;">حول</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-xs-6 b-r">
+                                        <strong>الاسم </strong>
+                                        <br>
+                                        <p class="text-muted"> @Model.Name</p>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6 b-r">
+                                        <strong>الموبايل</strong>
+                                        <br>
+                                        <p class="text-muted">@Model.Phone</p>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6 b-r">
+                                        <strong>البريد الالكتروني</strong>
+                                        <br>
+                                        <p class="text-muted">@Model.Email</p>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6">
+                                        <strong>الدولة</strong>
+                                        <br>
+                                        <p class="text-muted">@Model.Country.Name</p>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <!--END INFO-->
+                        <!--PHOTOS-->
+                        <div class="tab-pane" id="Photos" role="tabpanel">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-title">
+                                        <h4>الصور</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>الصورة</th>
+                                                        <th>دائرة العرض</th>
+                                                        <th>خط الطول</th>
+                                                        <th>العنوان</th>
+                                                        <th>التفاصيل</th>
+                                                        <th>الدولة</th>
+                                                        <th>التاريخ</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.User_Photos)
+                                                    {
+                                                        <tr>
+                                                            <th>
+                                                                <img src="~/Uploads/User_Photos/@(item.ID).jpg" height="200" width="250" />
+                                                            </th>
+                                                            <th>@item.Log</th>
+                                                            <th>@item.Lat</th>
+                                                            <th>@item.Location</th>
+                                                            <th>
+                                                                @item.Description
+                                                            </th>
+                                                            <th>@item.Country.Name</th>
+                                                            <th>@item.date</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END PHOTOS-->
+                        <!--VEDIOS-->
+                        <div class="tab-pane" id="Vedios" role="tabpanel">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-title">
+                                        <h4>الفيديوهات</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>الفيديو</th>
+                                                        <th>التقاصيل</th>
+                                                        <th>دائرة العرض</th>
+                                                        <th>خط الطول</th>
+                                                        <th>العنوان</th>
+                                                        <th>تحميل</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.User_Videos)
+                                                    {
+                                                        <tr>
+                                                            <th>
+                                                                <video width="300" height="200" controls>
+                                                                    <source src="~/Uploads/User_Videos/@(item.ID).mp4" type="video/mp4">
+                                                                </video>
+                                                            </th>
+                                                            <th> 
+                                                                @item.Description
+                                                                </th>
+                                                            <th>@item.Log</th>
+                                                            <th>@item.Lat</th>
+                                                            <th>@item.Location</th>
+                                                            <th>
+
+                                                                <form action="~/Users/VideoDownLoad/@(item.ID)?Name=@Model.Name" method="post">
+                                                                    <button class="btn btn-info" type="submit">
+                                                                        تحميل
+                                                                    </button>
+                                                                </form>
+                                                            </th>
+                                                            <th></th>
+                                                        </tr>
+
+                                                    }                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END VEDIOS-->
+                        <!--Reservations-->
+                        <div class="tab-pane" id="Reservations" role="tabpanel">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-title">
+                                        <h4>الفنادق</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>الاسم</th>
+                                                        <th>نوع الحجز</th>
+                                                        <th>الوقت</th>
+                                                        <th>التاريخ</th>
+                                                        <th>عدد الايام</th>
+                                                        <th>دائرة العرض</th>
+                                                        <th>خط الطول</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.Reservations)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.Name</td>
+                                                            <td>@item.Type</td>
+                                                            <td>@item.Time</td>
+                                                            <td>@item.Date.Date.ToString("MM-dd-yyyy")</td>
+                                                            <td>@item.Days</td>
+                                                            <td>@item.Log</td>
+                                                            <td>@item.Lat</td>
+                                                        </tr>
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end Reservations-->
+                        <!--Reservations-->
+                        <div class="tab-pane" id="visits" role="tabpanel">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-title">
+                                        <h4>الزيارات</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th> المدينة</th>
+                                                        <th>مطعم</th>
+                                                        <th>فندق</th>
+                                                        <th>  مكان سياحي</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.User_City)
+                                                    {
+                                                        <tr>
+                                                            <td> @item.City.Name</td>
+                                                            <td>
+                                                                @item.Resturant
+                                                            </td>
+                                                            <td>
+                                                                @item.Hotel
+                                                            </td>
+                                                            <td>
+                                                               @item.Place
+                                                            </td>
+                                                        </tr>
+
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end Reservations-->
+
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+
+</div>
+<!-- End Page wrapper  -->

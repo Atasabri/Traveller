@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Traveller.Models.City_Reports>
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">التقارير</h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:right;">
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="img-responsive">
+                                <img src="~/Uploads/City_Reports/@(item.ID).jpg" style="width:438px;" />
+                                <br />
+                                <form action="~/Cities/DeleteReport/@(item.ID)" method="post">
+                                    <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want Delete This Report ?!');" type="submit"><i class="close"></i> حذف</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var i in item.Report_Comments)
+                                        {
+                                            <tr>
+                                                <th>
+                                                    <a href="~/Users/Details/@i.User_ID" target="_blank"> <img src="~/Uploads/Users/@(i.User.Name).jpg" style="width:30px; border-radius:100%;" /></a>
+                                                </th>
+                                                <th>
+                                                    @i.Comment
+                                                </th>
+                                                <th>
+                                                    <form action="~/Cities/DeleteComment/@(i.ID)" method="post">
+                                                        <button class="btn btn-danger"  onclick="return confirm('Are You Sure You Want Delete This Comment ?!');" type="submit"><i class="close">حذف</i> </button>
+                                                    </form>
+                                                </th>
+                                            </tr>
+
+                                        }
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+        }
+
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->
+

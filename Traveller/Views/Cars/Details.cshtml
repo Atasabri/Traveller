@@ -1,0 +1,73 @@
+﻿@model Traveller.Models.Car
+
+@{
+    ViewBag.Title =Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تفاصيل السيارة </h3>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <a href="~/Cars/Edit/@Model.ID" class="btn btn-success"> تعديل السيارة</a>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم السيارة</h2>
+                    </div>
+                    <h4>@Model.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>موقع الويب</h2>
+                    </div>
+                    <h4>
+                        <a href="@Model.Link" target="_blank">
+                            <i class="fa fa-globe" style="font-size:55px;"></i>
+                        </a>
+                    </h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم المدينه</h2>
+                    </div>
+                    <h4>@Model.City.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> الصورة</h2>
+                    </div>
+                    <h4>
+                        <img src="~/Uploads/Cars/@(Model.ID).jpg" alt="" width="200" height="200" style="border-radius:50%" />
+                    </h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container fluid  -->
+</div>
+<!-- End Page wrapper  -->

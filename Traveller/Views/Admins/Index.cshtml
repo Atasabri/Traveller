@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Traveller.Models.Admin>
+@using Traveller.Models
+@{
+    ViewBag.Title = "المسؤولين";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int ID = int.Parse(User.Identity.Name);
+    Admin admin = new DB().Admins.Find(ID);
+}
+
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">المسؤولين </h3>
+        </div>
+    </div>
+    @if (admin.IsManager)
+    {
+    <div class="container-fluid">
+        <a href="~/Admins/Create" class="btn btn-success">اضافة مسؤول</a>   
+     </div>
+    }
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" id="example23">
+                                <thead>
+                                    <tr>
+                                        <th>الاسم</th>
+                                        <th>مدير ؟</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (admin.IsManager)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.IsManager)</td>
+                                                <td>
+                                                    <div class="dropdown show">
+                                                        <a data-toggle="dropdown" aria-expanded="true">
+                                                            <i class="ti-settings">
+                                                            </i>
+                                                        </a>
+                                                        <ul class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -123px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                            <a href="~/Admins/Details/@item.ID"><li><i class="ti-info-alt"> </i>تفاصيل</li></a>
+                                                            <a href="~/Admins/Edit/@item.ID"><li><i class="ti-pencil"> </i>تعديل</li></a>
+                                                            <li>
+                                                                <form action="~/Admins/Delete/@(item.ID)" method="post">
+                                                                    @Html.AntiForgeryToken()
+                                                                    <button class="btn btn-danger" onclick="return confirm('Are You Sure You Want To Delete This Admin ?!');" type="submit"><i class="close"></i> حذف</button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.IsManager)</td>
+                                            </tr>
+                                        }
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+<script src="~/Scripts/lib/datatables/buttons.flash.min.js"></script>
+<script src="~/Scripts/lib/datatables/buttons.html5.min.js"></script>
+<script src="~/Scripts/lib/datatables/buttons.print.min.js"></script>
+<script src="~/Scripts/lib/datatables/datatables-init.js"></script>
+<script src="~/Scripts/lib/datatables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/lib/datatables/datatables.min.js"></script>
+<script src="~/Scripts/lib/datatables/jszip.min.js"></script>
+<script src="~/Scripts/lib/datatables/pdfmake.min.js"></script>
+<script src="~/Scripts/lib/datatables/vfs_fonts.js"></script>

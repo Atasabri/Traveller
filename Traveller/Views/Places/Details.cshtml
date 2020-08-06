@@ -1,0 +1,202 @@
+﻿@model Traveller.Models.Place
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">تفاصيل المكان السياحى </h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="~/Places/Edit/@Model.ID" class="btn btn-success"> تعديل  المكان السياحى</a>
+    </div>
+
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid" style="text-align:center;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم المكان</h2>
+                    </div>
+                    <h4> @Model.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>الاسم الاصلي في الدولة </h2>
+                    </div>
+                    <h4> @Model.NameInCountry</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2> دائرة العرض</h2>
+                    </div>
+                    <h4>@Model.Log</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>خط الطول</h2>
+                    </div>
+                    <h4>@Model.Lat</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>اسم المدينة</h2>
+                    </div>
+                    <h4>@Model.City.Name</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>عدد الاعجابات</h2>
+                    </div>
+                    <h4>@Model.Place_Likes.Count</h4>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="cardo">
+                    <div class="card-title">
+                        <h4>التفاصيل</h4>
+                    </div>
+                    <p>
+                        @Model.Description
+                    </p>
+                </div>
+            </div>
+
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cardo">
+                        <div class="card-title">
+                            <h4>الصور</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            @foreach (var item in Model.Places_Photos)
+                                            {
+                                                <th>
+                                                    <img src="~/Uploads/Places_Photos/@(item.ID).jpg" height="200" width="250" />
+                                                </th>
+                                            }                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cardo">
+                        <div class="card-title">
+                            <h4>الفيديوهات</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            @foreach (var item in Model.Places_Videos)
+                                            {
+                                                <th>
+                                                    <video width="250" height="200" controls="">
+                                                        <source src="~/Uploads/Places_Videos/@(item.ID).mp4" type="video/mp4">
+                                                    </video>
+                                                </th>
+                                            }
+                                            
+                                      
+                                          </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="cardo">
+                        <div class="card-title">
+                            <h4>
+                                التعليقات
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody id="ok">
+                                      @foreach (var item in Model.Place_Comments)
+                                      {
+                                        <tr>
+                                            <th>
+                                                <a href="~/Users/Details/@(item.User_ID)">
+                                                    <img src="~/Uploads/Users/@(item.User.Name).jpg" width="50" height="50" style="border-radius:50%" />
+                                                </a>
+                                            </th>
+                                            <th>
+                                                @item.Comment
+                                            </th>
+                                            <th>
+                                                <form action="~/Places/DeleteComment?id=@item.ID" method="post">
+                                                    <button href="#" onclick="return confirm('Are You Sure You Want To Delete This Comment ?!');" style="color:red;"><i class="fa ti-trash"></i> </button>
+                                                </form>
+                                             </th>
+                                        </tr>
+                                      }                                   
+                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+            </div>
+
+        <!-- End Container fluid  -->
+    </div>
+    </div>
+    <!-- End Page wrapper  -->

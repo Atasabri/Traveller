@@ -1,0 +1,104 @@
+﻿@model Traveller.Models.User
+@using Traveller.Models
+@{
+    ViewBag.Title = "اضافة مسؤول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ <!-- Page wrapper  -->
+<div class="page-wrapper">
+    <!-- Bread crumb -->
+    <div class="row page-titles">
+        <div class="col-md-12 align-self-center">
+            <h3 class="text-primary text-center">اضافة مسؤول </h3>
+        </div>
+    </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row" dir="rtl">
+            <div class="card-body text-center">
+                <div class="input-states">
+                    <form class="form-horizontal" action="~/Users/Create" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">اسم المستخدم</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">كلمة المرور</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">البريد الالكتروني</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4"> الهاتف</label>
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4"> الهاتف</label>
+                                <div class="col-md-8">
+                                    @Html.DropDownList("Country_ID",new SelectList(new DB().Countries,"ID","Name"),"-Select Country -",new {@class= "form-control",@required= "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">خبير سفر ؟ </label>
+                                <div class="form-check col-md-1">
+                                    @Html.EditorFor(model => model.Is_Traveller)
+                                    @Html.ValidationMessageFor(model => model.Is_Traveller, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-md-4">صورة</label>
+                                <div class="">
+                                    <input type="file" name="Photo" required />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">اضافة</button>
+                    </form>
+                    @if (ViewBag.error != null)
+                    {
+                        <span style="color:red">@ViewBag.error</span>
+                    }
+                    @if (ViewBag.Done != null)
+                    {
+                        <span style="color:green">@ViewBag.Done</span>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+    <!-- End Container fluid  -->
+    <!-- footer -->
+    <!-- End footer -->
+</div>
+<!-- End Page wrapper  -->

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cebf5e1692614d3a981327820b785276" Name="Diagram1">
+        <EntityTypeShape EntityType="TravellerModel.AboutUsPhoto" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.AboutUsVideo" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Admin" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Calls_Companies" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Car" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Cars_Companies" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.City" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.City_Photos" Width="1.5" PointX="5.25" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.City_Rates" Width="1.5" PointX="5.25" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.City_Reports" Width="1.5" PointX="5.25" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Code" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Contact" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Country" Width="1.5" PointX="0.75" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Country_Photo_Comments" Width="1.5" PointX="5.25" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Country_Photos" Width="1.5" PointX="3" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Country_Video_Comments" Width="1.5" PointX="8.25" PointY="55.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Country_Videos" Width="1.5" PointX="3" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Favorite" Width="1.5" PointX="10.25" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Fly" Width="1.5" PointX="5.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Hotel" Width="1.5" PointX="5.25" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Offer" Width="1.5" PointX="3" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Place_Comments" Width="1.5" PointX="7.5" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Place_Likes" Width="1.5" PointX="10.5" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Place" Width="1.5" PointX="5.25" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Places_Photos" Width="1.5" PointX="7.5" PointY="43.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Places_Videos" Width="1.5" PointX="7.5" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Report_Comments" Width="1.5" PointX="7.5" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Reservation" Width="1.5" PointX="5.25" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Subscriber" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.Task" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.User_City" Width="1.5" PointX="5.25" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.User_Photos" Width="1.5" PointX="10.25" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.User_Rates" Width="1.5" PointX="5.25" PointY="63.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.User_Videos" Width="1.5" PointX="11.25" PointY="54.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravellerModel.User" Width="1.5" PointX="3" PointY="59.625" IsExpanded="true" />
+        <AssociationConnector Association="TravellerModel.FK__Tasks__FromManag__0FEC5ADD" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Tasks__ToAdmin__10E07F16" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Calls_Com__Count__6991A7CB" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Cars__City_ID__0A688BB1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Cars_Comp__Count__0D64F3ED" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Cities__Country___0E591826" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__City_Phot__City___7226EDCC" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__City_Rate__City___6E565CE8" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__City_Repo__City___7132C993" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Flys__City_ID__09746778" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Hotels__City_ID__0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Places__City_ID__731B1205" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__User_City__City___703EA55A" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__City_Rate__User___2E70E1FD" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Report_Co__Repor__6ABAD62E" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_P__Count__7DEDA633" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_Phot__User___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_V__Count__03A67F89" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_Vide__User___37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Favorites__Count__58BC2184" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Offers__Country___0F4D3C5F" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Users__Country_I__335592AB" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_P__Count__00CA12DE" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_P__User___32616E72" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_V__Count__0682EC34" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Country_V__User___27E3DFFF" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Favorites__User___57C7FD4B" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Place_Com__Place__78D3EB5B" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Place_Com__User___6F7F8B4B" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Place_Lik__Place__77DFC722" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Place_Lik__User___30592A6F" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Places_Ph__Place__756D6ECB" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Places_Vi__Place__76619304" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Report_Co__User___6BAEFA67" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__Reservati__User___26EFBBC6" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__User_City__User___2D9CB955" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__User_Phot__User___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__User_Rate__FUser__324172E1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK_User_Rates_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TravellerModel.FK__User_Vide__User___37A5467C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
